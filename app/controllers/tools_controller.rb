@@ -1,37 +1,37 @@
 class ToolsController < ApplicationController
 
-  # GET: /too_ls
-  get "/too_ls" do
-    erb :"/too_ls/index.html"
+ 
+  get "/tools" do
+    erb :"/too_ls/index"
   end
 
-  # GET: /too_ls/new
+  
   get "/too_ls/new" do
-    erb :"/too_ls/new.html"
+    erb :"/tools/new"
   end
 
-  # POST: /too_ls
-  post "/too_ls" do
-    redirect "/too_ls"
+
+  post "/tools" do
+    redirect "/tools"
   end
 
-  # GET: /too_ls/5
-  get "/too_ls/:id" do
-    erb :"/too_ls/show.html"
+
+  get "/tools/:id" do
+    erb :"/tools/show"
   end
 
-  # GET: /too_ls/5/edit
-  get "/too_ls/:id/edit" do
-    erb :"/too_ls/edit.html"
+ 
+  get "/tools/:id/edit" do
+    erb :"/tools/edit"
   end
 
-  # PATCH: /too_ls/5
-  patch "/too_ls/:id" do
+
+  patch "/tools/:id" do
     redirect "/too_ls/:id"
   end
 
-  # DELETE: /too_ls/5/delete
-  delete "/too_ls/:id/delete" do
-    redirect "/too_ls"
+ 
+  delete "/tools/:id/delete" do
+    redirect "/tools"
   end
 end
