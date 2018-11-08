@@ -3,8 +3,8 @@ class CreateTools < ActiveRecord::Migration[4.2]
     create_table :tools do |t|
       t.string :name
       t.string :description
-      t.integer :owner_id
-      t.integer :borrower_id
+      t.integer :user_id
+      t.string :borrower_name
 
       t.timestamps null: false
     end

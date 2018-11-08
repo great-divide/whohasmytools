@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 2018_11_08_192419) do
   create_table "tools", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "owner_id"
-    t.integer "borrower_id"
+    t.integer "user_id"
+    t.string "borrower_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
