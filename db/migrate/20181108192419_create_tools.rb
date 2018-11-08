@@ -4,7 +4,7 @@ class CreateTools < ActiveRecord::Migration[4.2]
       t.string :name
       t.string :description
       t.integer :user_id
-      t.string :borrower_name
+      t.integer :borrower_id
 
       t.timestamps null: false
     end
