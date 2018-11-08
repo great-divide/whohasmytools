@@ -1,4 +1,4 @@
-class TooLsController < ApplicationController
+class ToolsController < ApplicationController
 
   # GET: /too_ls
   get "/too_ls" do
