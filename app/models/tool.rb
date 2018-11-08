@@ -1,3 +1,3 @@
-class TOOL < ActiveRecord::Base
+class Tool < ActiveRecord::Base
 	belongs_to :user
 end
