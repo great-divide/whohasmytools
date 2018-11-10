@@ -4,5 +4,13 @@ class Contract < ActiveRecord::Base
 	belongs_to :loaner, foreign_key: "loaner_id", class_name: "User"
 	belongs_to :borrower, foreign_key: "borrower_id", class_name: "User"
 
+	after_initialize :init
 	
+	def init
+		self.active = true
+	end
+
+	def terminate
+		self.active = false
+	end
 end

@@ -14,10 +14,11 @@ ActiveRecord::Schema.define(version: 2018_11_09_180054) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer "tool_id"
-    t.string "loaner_name"
     t.integer "loaner_id"
-    t.string "borrower_name"
     t.integer "borrower_id"
+    t.string "loaner_name"
+    t.string "borrower_name"
+    t.boolean "active"
   end
 
   create_table "tools", force: :cascade do |t|

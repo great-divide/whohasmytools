@@ -6,8 +6,8 @@ class CreateContracts < ActiveRecord::Migration[5.2]
   		t.integer :borrower_id
   		t.string  :loaner_name
   		t.string  :borrower_name
-  		
-  		# t.boolean :active?
+  		t.boolean :active
+  		t.timestamps null: false
   	end
   end
 end
