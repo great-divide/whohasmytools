@@ -55,7 +55,20 @@ describe "User" do
 		@contract.loaner = @peter
 		@contract.save
 		expect(@peter.borrowers).to include(@ben)
-	end
+ 	end
+  end
 end
 
+describe 'Contract' do
+
+	it "Defaults to 'active' status upon creation" do
+		@contract = Contract.create
+		expect(@contract.active).to eq(true)
+	end
+
+	it "Can change from active to inactive" do
+		@contract = Contract.create
+		@contract.terminate
+		expect(@contract.active).to eq(false)
+	end
 end

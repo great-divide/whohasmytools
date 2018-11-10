@@ -2,17 +2,33 @@ class ToolsController < ApplicationController
 
  
   get "/tools" do
-    erb :"/too_ls/index"
+    erb :"/tools/index"
   end
 
   
-  get "/too_ls/new" do
+  get "/tools/new" do
+    # if logged_in?
+      
+    # else
+    #   redirect "/users/login"
+    # end
+
     erb :"/tools/new"
   end
 
 
-  post "/tools" do
-    redirect "/tools"
+  post "/tools/new" do
+    if logged_in?
+      @user = current_user
+      @tool = Tool.create(params["tool"])
+      @user.tools << @tool
+      # do i have to run 'save' here?
+      @user.save
+
+      redirect "users/#{@user.id}"
+    else
+      redirect "/users/login"
+    end
   end
 
 

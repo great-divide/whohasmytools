@@ -8,6 +8,7 @@ class Contract < ActiveRecord::Base
 	
 	def init
 		self.active = true
+		# get loaner/borrower names from ids
 	end
 
 	def terminate
