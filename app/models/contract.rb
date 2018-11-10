@@ -6,12 +6,14 @@ class Contract < ActiveRecord::Base
 
 	after_initialize :init
 	
-	def init
-		self.active = true
-		# get loaner/borrower names from ids
-	end
 
-	def terminate
-		self.active = false
-	end
+	# WHY THIS NOT WORKING?????
+	# def init
+	# 	self.active = true
+	# 	get loaner/borrower names from ids
+	# end
+
+	# def terminate
+	# 	self.active = false
+	# end
 end

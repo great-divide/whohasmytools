@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2018_11_09_180054) do
     t.string "loaner_name"
     t.string "borrower_name"
     t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tools", force: :cascade do |t|
