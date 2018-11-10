@@ -10,6 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2018_11_09_180054) do
+
+  create_table "contracts", force: :cascade do |t|
+    t.integer "tool_id"
+    t.string "loaner_name"
+    t.integer "loaner_id"
+    t.string "borrower_name"
+    t.integer "borrower_id"
+  end
+
+  create_table "tools", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

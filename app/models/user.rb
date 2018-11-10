@@ -1,8 +1,17 @@
 class User < ActiveRecord::Base
 	has_secure_password
 	has_many :tools
+	# has_many :borrows
+	
+	# "loaner_contract == in the role of loaner
+	has_many :loaner_contracts, foreign_key: :loaner_id, class_name: "Contract"
+	has_many :borrowers, through: :loaner_contracts, source: :borrower 
 
-	has_many :borrowers, class_name: "User", foreign_key: "borrower_id"
+	# "borrower_contract" ==  in the role of borrower
+	has_many :borrower_contracts, foreign_key: :borrower_id, class_name: "Contract"
+	has_many :loaners, through: :borrower_contracts, source: :loaner
+	
 
-	has_many :lenders, class_name: "User", foreign_key: "lender_id"
+	
 end
+
