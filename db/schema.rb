@@ -16,8 +16,6 @@ ActiveRecord::Schema.define(version: 2018_11_09_180054) do
     t.integer "tool_id"
     t.integer "loaner_id"
     t.integer "borrower_id"
-    t.string "loaner_name"
-    t.string "borrower_name"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

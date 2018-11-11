@@ -65,11 +65,11 @@ class ToolsController < ApplicationController
 
   patch "/tools/:id" do
     @tool = Tool.find_by(id: params["id"])
-
+    binding.pry
     if logged_in?
       if @tool.user_id == current_user.id
 
-         erb :"/tools/edit"
+         erb :"/tools/#{@tool.id}"
       end
     else
       redirect "/"
