@@ -1,9 +1,9 @@
 <h1>Edit Tool</h1>
 <form action="/tools/<%= @tool.id %>" method="POST">
 	<input type="hidden" name="_method" value="patch">
-	<p>Name: <input type="text" name="name" value="<%= @tool.name%>"></p>
+	<p>Name: <input type="text" name="tool[name]" value="<%= @tool.name%>"></p>
 	<p>Description: 
-		<p><textarea name="description" placeholder="<%= @tool.description %>"></textarea></p>
+		<p><textarea name="tool[description]" placeholder="<%= @tool.description %>"></textarea></p>
 	</p>
 	<input type="submit" name="update" value="Update!">
 </form>

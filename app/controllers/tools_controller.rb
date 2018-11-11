@@ -36,7 +36,7 @@ class ToolsController < ApplicationController
   get "/tools/:id" do
     if logged_in?
       @tool = Tool.find_by(id: params["id"])
-      binding.pry
+      # binding.pry
 
       erb :"/tools/show"
     else 
@@ -68,8 +68,11 @@ class ToolsController < ApplicationController
     binding.pry
     if logged_in?
       if @tool.user_id == current_user.id
+          @tool.name = params["tool"]["name"]
+          @tool.description = params["tool"]["description"]
+          @tool.save
 
-         erb :"/tools/#{@tool.id}"
+         redirect "/tools/#{@tool.id}"
       end
     else
       redirect "/"
