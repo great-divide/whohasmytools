@@ -1,0 +1,27 @@
+<h1><%=@user.username%>'s Contracts</h1>
+
+<h2>You have <%= @user.active.length %> active loans:</h2>
+	<% @user.active_loans.each do |c| %>
+		<ol>
+			<li><%=c.borrower.username%> has your <%=c.tool.name%></li>
+		</ol>
+	<% end %>
+	<br>
+	<% @user.active_borrows.each do |c| %>
+		<ol>
+			<li>You have <%=c.loaner.username%>'s <%=c.tool.name%></li>
+		</ol>
+	<% end %>
+
+<h3>You've had <%= @user.loan_history.length + @user.borrow_history.length %> successful loans:</h3>
+		<% @user.loan_history.each do |loan| %>
+			<ol>
+				<li><%=loan.borrower.username%> returned your <%=loan.tool.name%></li>
+			</ol>
+		<% end %>
+		<br>
+		<% @user.borrow_history.each do |borrow| %>
+			<ol>
+				<li>You returned <%=loan.loaner.username%>'s <%=loan.tool.name%></li>
+			</ol>
+		<% end %>

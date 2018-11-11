@@ -6,21 +6,21 @@
 	</form>
 </div>
 <!-- FLOAT loans by Borrows -->
-<h3>Current Contracts</h3>
+<h2>Current Contracts</h2>
 
-	<h2>Loans</h2>
+	<h3>Active Loans</h3>
 	<!-- make HTML list -->
-		<% if @user.loaner_contracts.empty? %>
+		<% if @user.active_loans.empty? %>
 			<p>You are not loaning any tools right now.</p>
 		<% else%>
-			<% @user.loaner_contracts.each.with_index(1) do |c, index| %>
+			<% @user.active_loans.each.with_index(1) do |c, index| %>
 				<!-- later on... add a date... due date? -->
-				<p><%= "#{index}. You loaned your #{c.tool} to #{c.borrower}." %></p>
+				<p><%= "#{index}. You loaned your #{c.tool.name} to #{c.borrower.username}." %></p>
 			<% end %>
 		<% end %>
 
 
-	<h2>Borrows</h2>
+	<h3>Active Borrows</h3>
 	<!-- make HTML list -->
 		<% if @user.borrower_contracts.empty? %>
 			<p>You are not borrowing any tools right now.</p>
@@ -31,12 +31,12 @@
 		<% end %>
 
 <!-- TOOL SECTION, float side by side -->
-<h3>My Tools</h3>
+<h2>My Tools</h2>
 	<% @user.tools.each.with_index(1) do |t, index| %>
 	<p><b><%= "#{index}. #{t.name}" %>:</b> <%= t.description %></p>
 	<% end %>
 
-<h3>Add Some Tools to Loan to Your friends</h3>
+<h3>Add some tools that you can loan:</h3>
 	<form action="/tools/new" method="POST">
 		<!-- line these up, justified right! -->
 		<p>Tool: <input type="text" name="tool[name]"></p>

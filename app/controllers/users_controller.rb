@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   
 
   post "/login" do
-    binding.pry
     @user = User.find_by(username: params["login"]["username"])
 
     if @user && @user.authenticate(params["login"]["password"])
@@ -49,6 +48,7 @@ class UsersController < ApplicationController
   get "/users/:id" do
     if logged_in?
       @user = User.find(params["id"])
+      binding.pry
       erb :"/users/show"
     else 
       redirect "/"
