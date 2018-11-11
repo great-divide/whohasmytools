@@ -1,9 +1,9 @@
 <h1><%=@user.username%>'s Contracts</h1>
 
 <h2>You have <%= @user.active.length %> active loans:</h2>
-	<% @user.active_loans.each do |c| %>
+	<% @user.active_loans.each.with_index(1) do |c, index| %>
 		<ol>
-			<li><%=c.borrower.username%> has your <%=c.tool.name%></li>
+			<li><%= index %>. <%=c.borrower.username%> has your <%=c.tool.name%></li>
 		</ol>
 	<% end %>
 	<br>

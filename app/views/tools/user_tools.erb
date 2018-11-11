@@ -1,0 +1,12 @@
+<h1><%=@user.username%>'s Tools</h1>
+<br>
+<h2>You have <%= @user.tools.length %> Tools to loan:</h2>
+
+	<% @user.tools.each.with_index(1) do |t, index| %>
+		<ol>
+			<li><%= index %>. <a href="/tools/<%= t.id %>"><%=t.name%></a></li>
+		</ol>
+	<% end %>
+<br>
+<br>
+<p><a href="/">Back to My Dashboard</a></p>

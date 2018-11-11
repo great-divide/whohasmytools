@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   get "/users/:id" do
     if logged_in?
       @user = User.find(params["id"])
-      binding.pry
+     
       erb :"/users/show"
     else 
       redirect "/"

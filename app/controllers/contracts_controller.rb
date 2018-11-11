@@ -25,11 +25,15 @@ class ContractsController < ApplicationController
 		end
 	end
 
-	get '/contracts/:id' do
-		@user = current_user
-		@contract = Contract.find_by(params["id"])
+	get '/users/contracts' do
+		if logged_in?
+			@user = current_user
+			# @contract = Contract.find_by(params["id"])
 
-		erb :"/contracts/show"
+			erb :"/contracts/user_contracts"
+		else 
+			redirect '/'
+		end
 	end
 
 end

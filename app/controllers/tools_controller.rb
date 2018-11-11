@@ -32,6 +32,15 @@ class ToolsController < ApplicationController
     end
   end
 
+  get '/users/tools' do
+    if logged_in?
+      @user = current_user
+
+      erb :"/tools/user_tools"
+    else 
+      redirect '/'
+    end
+  end
 
   get "/tools/:id" do
     if logged_in?
@@ -65,7 +74,7 @@ class ToolsController < ApplicationController
 
   patch "/tools/:id" do
     @tool = Tool.find_by(id: params["id"])
-    binding.pry
+
     if logged_in?
       if @tool.user_id == current_user.id
           @tool.name = params["tool"]["name"]
