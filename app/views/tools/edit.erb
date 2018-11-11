@@ -1,1 +1,7 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit Tool</h1>
+<form action="/tools/:id/edit" method="POST">
+	<input type="hidden" name="_method" value="patch">
+	<p>Name: <input type="text" name="name" placeholder="<%= @tool.name%>"></p>
+	<p>Description: <input type="text" name="description" placeholder="<%= @tool.description %>"></p>
+</form>
+

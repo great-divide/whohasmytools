@@ -33,7 +33,7 @@
 <!-- TOOL SECTION, float side by side -->
 <h2>My Tools</h2>
 	<% @user.tools.each.with_index(1) do |t, index| %>
-	<p><b><%= "#{index}. #{t.name}" %>:</b> <%= t.description %></p>
+	<p><b><%= "#{index}." %><a href="/tools/<%="#{t.id}"%>"><%= "#{t.name}" %></a>:</b> <%= t.description %></p>
 	<% end %>
 
 <h3>Add some tools that you can loan:</h3>

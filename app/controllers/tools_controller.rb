@@ -1,20 +1,21 @@
 class ToolsController < ApplicationController
 
  
-  get "/tools" do
-    erb :"/tools/index"
-  end
+  # if User as more than, say 10 tools... show 10 on user/show, add link for this to list them all
+  # get "/tools" do
+
+  # end
 
   
-  get "/tools/new" do
+  # get "/tools/new" do
     # if logged_in?
       
     # else
     #   redirect "/users/login"
     # end
 
-    erb :"/tools/new"
-  end
+  #   erb :"/tools/new"
+  # end
 
 
   post "/tools/new" do
@@ -33,17 +34,46 @@ class ToolsController < ApplicationController
 
 
   get "/tools/:id" do
-    erb :"/tools/show"
+    if logged_in?
+      @tool = Tool.find_by(id: params["id"])
+      binding.pry
+
+      erb :"/tools/show"
+    else 
+      redirect "/"
+    end
+
+    
   end
 
  
   get "/tools/:id/edit" do
-    erb :"/tools/edit"
+    @tool = Tool.find_by(id: params["id"])
+
+    if logged_in?
+      if @tool.user_id == current_user.id
+
+         erb :"/tools/edit"
+      end
+    else
+      redirect "/"
+    end
+
+   
   end
 
 
   patch "/tools/:id" do
-    redirect "/too_ls/:id"
+    @tool = Tool.find_by(id: params["id"])
+
+    if logged_in?
+      if @tool.user_id == current_user.id
+
+         erb :"/tools/edit"
+      end
+    else
+      redirect "/"
+    end
   end
 
  
