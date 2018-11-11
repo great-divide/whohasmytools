@@ -19,6 +19,17 @@ describe "User" do
 
 		expect(@user.tools).to include(@hammer)
 	end
+
+	it "does not allow two Users to have the same username" do
+		@user = User.create(username: "John", email: "jj1990@gmail.com", password: "abc123")
+		params = {
+        :username => "John",
+        :email => "skittles@aol.com",
+        :password => "rainbows"
+      }
+      post '/signup', params
+      expect(last_response.location).to include("/")
+	end
   end
 
   describe 'User/Contract associations' do
@@ -46,7 +57,7 @@ describe "User" do
 		@contract.borrower = @brian
 		@contract.loaner = @peter
 		@contract.save
-		binding.pry
+		# binding.pry
 		expect(@brian.loaners).to include(@peter)
 	end
 

@@ -1,24 +1,43 @@
 class UsersController < ApplicationController
   
-  get "/users" do
-    erb :"/users/index"
+
+  post "/login" do
+    binding.pry
+    @user = User.find_by(username: params["login"]["username"])
+
+    if @user && @user.authenticate(params["login"]["password"])
+      session[:user_id] = @user.id
+      redirect "/users/#{@user.id}"
+    else
+      # redirect signup when signup page is created
+      redirect '/'
+    end
   end
 
 
-  get "/users/new" do
-    erb :"/users/new"
+  post "/logout" do
+    if logged_in?
+      session.clear
+      redirect '/'
+    else
+      redirect '/'
+    end
+  end
+  get "/users" do
+    erb :"/users/index"
   end
 
   
   post "/signup" do
     if !logged_in?
-      if params["username"] != "" && params["email"] != "" && params["password"] != ""
+      if params["username"] != "" && params["email"] != "" && params["password"] != "" && !User.find_by(username: params["username"])
+        
         @user = User.create(params)
         session[:user_id] = @user.id
-
+      
         redirect "/users/#{@user.id}"
       else
-        redirect "/users/signup"
+        redirect "/"
       end
     else
       @user = current_user
@@ -26,12 +45,13 @@ class UsersController < ApplicationController
     end
   end
 
+
   get "/users/:id" do
     if logged_in?
       @user = User.find(params["id"])
       erb :"/users/show"
     else 
-      redirect "/login"
+      redirect "/"
     end
   end
 

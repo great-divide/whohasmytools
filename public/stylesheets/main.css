@@ -113,3 +113,8 @@
     line-height: 24px;
   }
 }
+
+.logout {
+  float: right;
+  margin-left: 90%;
+}

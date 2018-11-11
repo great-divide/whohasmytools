@@ -1,5 +1,10 @@
 <h1>Welcome, <%= @user.username%>!</h1>
 
+<div class="logout">
+	<form action="/logout" method="POST">
+		<input type="submit" name="Log Out" value="Log Out">
+	</form>
+</div>
 <!-- FLOAT loans by Borrows -->
 <h3>Current Contracts</h3>
 
@@ -43,14 +48,14 @@
 <h3>Loan a Tool to a Friend</h3>
 	<form action="/contracts/new" method="POST">
 		<p>Borrower's Username: <input type="text" name="loan[borrower]"></p>
-		<p>Tool: 
-			<select name="loan[tool]">
-			<% @user.tools.each do |t| %>
-				<option value="<%= "#{t.name}" %>"><%= "#{t.name}" %></option>
-			<% end %>
+		<p><label for="tool">Tool:</label> 
+			<select id="tool" name="loan[tool]">
+				<option value="">--Choose a tool--</option>
+				<% @user.tools.each do |t| %>
+					<option value="<%= "#{t.name}" %>"><%= "#{t.name}" %></option>
+				<% end %>
 		</p>
-
-		<p><input type="submit" name="Loan it Out!"></p>
+		<p><input type="submit" value="Loan it out!"></p>
 	</form>
 
 <!-- This is cool b/c the app becomes useful to ppl who want to be responsible borrowers... -->
@@ -60,5 +65,5 @@
 	<form action="/contracts/new" method="POST">
 		<p>Loaner's Username: <input type="text" name="borrow[loaner]"></p>
 		<p>Tool: <input type="text" name="borrow[tool]"></p>
-		<p><input type="submit" name="Loan it Out!"></p>
+		<p><input type="submit" value="Borrow that tool!"></p>
 	</form>

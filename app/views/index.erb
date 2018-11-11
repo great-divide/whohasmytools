@@ -1,3 +1,4 @@
+<body>
 <div class="container">
   <!-- <header><img src="images/corneal-small.png" class="img-responsive main-image"></header> -->
   <div class="col-md-8 col-md-offset-2">
@@ -5,9 +6,11 @@
 
     <div class="content">
       <h2>Log In:</h2>
-      <form>
-        
-      </form>
+        <form action="/login" method="POST">
+          <p>Username: <input type="text" name="login[username]"></p>
+          <p>Password: <input type="text" name="login[password]"></p>
+          <input type="submit" id="Log In" value="Log In">
+        </form>
     </div>
 
     <div class="content">
@@ -24,3 +27,4 @@
 
   </div>
 </div>
+</body>
