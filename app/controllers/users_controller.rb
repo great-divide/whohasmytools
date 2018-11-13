@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     end
   end
 
-  
+
   # get "/users" do
   #   erb :"/users/index"
   # end
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   get "/users/:id" do
     if logged_in?
       @user = User.find(params["id"])
-     
+      binding.pry
       erb :"/users/show"
     else 
       flash[:login_error] = "Oops, you're not logged in! Please log in to continue."

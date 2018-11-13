@@ -4,8 +4,8 @@
 	<% @user.active_loans.each.with_index(1) do |c, index| %>
 		<ol>
 			<li><%= index %>. <%=c.borrower.username%> has your <%=c.tool.name%>
-				<form action="/contracts/<%= c.id %>/terminate" method="POST">
-					
+				<form action="/contracts/<%= c.id %>/" method="POST">
+					<input type="hidden" name="_method" value="patch">
 					<input type="submit" value="Tool Returned" name="terminate">
 				</form>
 				<!-- <form class="" action="/contracts/<%= c.id %>/edit" method="POST">
