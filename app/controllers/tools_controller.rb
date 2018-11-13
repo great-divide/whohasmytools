@@ -95,8 +95,8 @@ class ToolsController < ApplicationController
   delete "/tools/:id/delete" do
     if logged_in? && current_user.tools.include?(Tool.find_by(params["id"]))
         @tool = Tool.find_by(params["id"])
-        binding.pry
         @tool.delete
+        
         redirect "/users/tools"
     else 
       flash[:login_error] = "Oops, you're not logged in! Please log in to continue."

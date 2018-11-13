@@ -27,7 +27,7 @@ class ContractsController < ApplicationController
 	end
 
 	get '/users/contracts' do
-		binding.pry
+		
 		if logged_in?
 			@user = current_user
 		
@@ -41,7 +41,7 @@ class ContractsController < ApplicationController
 	post '/contracts/:id/' do
 		@contract = Contract.find_by(id: params["id"])
 		if logged_in?
-			binding.pry
+			
 			erb :'/contracts/show_contract'
 		else 
 			flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
@@ -56,7 +56,7 @@ class ContractsController < ApplicationController
 		if logged_in? && params["terminate"]
 			
 			@contract.terminate
-			binding.pry
+			
 			redirect "/users/contracts"
 		else
 			redirect "/"
