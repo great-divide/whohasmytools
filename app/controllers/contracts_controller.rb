@@ -31,7 +31,7 @@ class ContractsController < ApplicationController
 		
 		if logged_in?
 			@user = current_user
-			binding.pry
+			
 			erb :"/contracts/user_contracts"
 		else 
 			flash[:login_error] = "Oops, you're not logged in! Please log in to continue."

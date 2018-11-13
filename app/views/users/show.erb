@@ -26,7 +26,7 @@
 			<p>You are not borrowing any tools right now.</p>
 		<% else %>
 			<% @user.borrower_contracts.each.with_index(1) do |c, index| %>
-				<p><%= "#{index}. You are borrowing a #{c.tool} from #{c.loaner}" %></p>
+				<p><%= "#{index}. You are borrowing a #{c.tool.name} from #{c.loaner.username}" %></p>
 			<% end %>
 		<% end %>
 
