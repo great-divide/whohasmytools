@@ -25,3 +25,5 @@ Borrower terminate the Contract.
 ### Future versions
 In addition to addressing the notes above re: Borrower, a future version could also put in timed reminders, and send a message to both
 parties at some determined interval (1 week, 2 weeks) to remind them who has their Tools, whose Tools they have.
+
+Also, the My Tools section of the User dashboard could be altered to display Available Tools vs Loaned Tools (right now all Tools are displayed, regardless of loan status). This would be useful as a quick overview of the state of one's tool library. 
