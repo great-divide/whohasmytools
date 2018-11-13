@@ -1,30 +1,35 @@
 <body>
-<div class="container">
-  <!-- <header><img src="images/corneal-small.png" class="img-responsive main-image"></header> -->
-  <div class="col-md-8 col-md-offset-2">
-    <h1>Who Has My Tools?</h1>
+  <% if flash[:signup_error] %>
+    <%= flash[:signup_error] %>
+  <% elsif flash[:login_error] %>
+    <%= flash[:login_error] %>
+  <% end %>
+    <div class="container">
+      <!-- <header><img src="images/corneal-small.png" class="img-responsive main-image"></header> -->
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Who Has My Tools?</h1>
 
-    <div class="content">
-      <h2>Log In:</h2>
-        <form action="/login" method="POST">
-          <p>Username: <input type="text" name="login[username]"></p>
-          <p>Password: <input type="text" name="login[password]"></p>
-          <input type="submit" id="Log In" value="Log In">
-        </form>
+        <div class="content">
+          <h2>Log In:</h2>
+            <form action="/login" method="POST">
+              <p>Username: <input type="text" name="login[username]"></p>
+              <p>Password: <input type="text" name="login[password]"></p>
+              <input type="submit" id="Log In" value="Log In">
+            </form>
+        </div>
+
+        <div class="content">
+          <h2>Sign Up!</h2>
+          <form action="/signup" method="POST" name="sign_up" value="" id="">
+            <p>Username: <input type="text" name="username" id="username" placeholder="Tim Taylor"></p>
+            <p>Email: <input type="text" name="email" id="email" placeholder="tim@tooltime.com"></p>
+            <p>Password: <input type="text" name="password" id="password" placeholder="password"></p>
+            <p><input type="submit" value="Sign Up"></p>
+          </form>
+        </div>
+
+
+
+      </div>
     </div>
-
-    <div class="content">
-      <h2>Sign Up!</h2>
-      <form action="/signup" method="POST" name="sign_up" value="" id="">
-        <p>Username: <input type="text" name="username" id="username" placeholder="Tim Taylor"></p>
-        <p>Email: <input type="text" name="email" id="email" placeholder="tim@tooltime.com"></p>
-        <p>Password: <input type="text" name="password" id="password" placeholder="password"></p>
-        <p><input type="submit" value="Sign Up"></p>
-      </form>
-    </div>
-
-
-
-  </div>
-</div>
 </body>

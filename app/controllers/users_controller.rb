@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
     else
-      # redirect signup when signup page is created
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect '/'
     end
   end
@@ -19,12 +19,15 @@ class UsersController < ApplicationController
       session.clear
       redirect '/'
     else
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect '/'
     end
   end
-  get "/users" do
-    erb :"/users/index"
-  end
+
+  
+  # get "/users" do
+  #   erb :"/users/index"
+  # end
 
   
   post "/signup" do
@@ -36,6 +39,7 @@ class UsersController < ApplicationController
       
         redirect "/users/#{@user.id}"
       else
+        flash[:signup_error] = "Something wasn't right, please try again."
         redirect "/"
       end
     else
@@ -51,13 +55,20 @@ class UsersController < ApplicationController
      
       erb :"/users/show"
     else 
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect "/"
     end
   end
 
   
   get "/users/:id/edit" do
-    erb :"/users/edit"
+    if logged_in?
+      @user = current_user
+      erb :"/users/edit"
+    else
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
+      redirect '/'
+    end
   end
 
   

@@ -57,7 +57,7 @@ describe "User" do
 		@contract.borrower = @brian
 		@contract.loaner = @peter
 		@contract.save
-		# binding.pry
+		
 		expect(@brian.loaners).to include(@peter)
 	end
 
@@ -65,6 +65,7 @@ describe "User" do
 		@contract.borrower = @ben
 		@contract.loaner = @peter
 		@contract.save
+		binding.pry
 		expect(@peter.borrowers).to include(@ben)
  	end
   end

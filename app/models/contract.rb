@@ -12,6 +12,6 @@ class Contract < ActiveRecord::Base
 	end
 
 	def terminate
-		self.active = false
+		self.update(active: false)
 	end
 end

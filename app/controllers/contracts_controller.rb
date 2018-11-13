@@ -11,13 +11,14 @@ class ContractsController < ApplicationController
 				@contract.loaner = current_user
 				@contract.borrower = User.find_by(username: params["loan"]["borrower"])
 				@contract.tool = @tool
+				@tool.contracts << @contract
 				@contract.save
 
-				redirect "/contracts/#{@contract.id}"
+				redirect "/users/contracts"
 			else
 				# flash message "That tool is already loaned out!"
 
-				redirect "/users/#{current_user.id}"
+				redirect "/users/contracts"
 			end
 		else
 			# clearer to either use flash message or go to dedicated login page 'sorry you must log in'... flash sounds snazzier
@@ -26,14 +27,30 @@ class ContractsController < ApplicationController
 	end
 
 	get '/users/contracts' do
+		binding.pry
 		if logged_in?
 			@user = current_user
-			# @contract = Contract.find_by(params["id"])
-
+		
 			erb :"/contracts/user_contracts"
 		else 
+			flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
 			redirect '/'
 		end
+	end
+
+	post '/contracts/:id/terminate' do
+		
+		@contract = Contract.find_by(id: params["id"])
+
+		if logged_in? && params["terminate"]
+			binding.pry
+			@contract.terminate
+			
+			redirect "/users/contracts"
+		else
+			redirect "/"
+		end 
+
 	end
 
 end

@@ -49,6 +49,7 @@ class ToolsController < ApplicationController
 
       erb :"/tools/show"
     else 
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect "/"
     end
 
@@ -65,6 +66,7 @@ class ToolsController < ApplicationController
          erb :"/tools/edit"
       end
     else
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect "/"
     end
 
@@ -84,12 +86,21 @@ class ToolsController < ApplicationController
          redirect "/tools/#{@tool.id}"
       end
     else
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect "/"
     end
   end
 
  
   delete "/tools/:id/delete" do
-    redirect "/tools"
+    if logged_in? && current_user.tools.include?(Tool.find_by(params["id"]))
+        @tool = Tool.find_by(params["id"])
+        binding.pry
+        @tool.delete
+        redirect "/users/tools"
+    else 
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
+      redirect '/'
+    end
   end
 end
