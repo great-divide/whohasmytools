@@ -1,3 +1,7 @@
+<% if flash[:tool_not_available] %>
+<%= flash[:tool_not_available] %>
+<% end %>
+
 <h1><%=@user.username%>'s Contracts</h1>
 
 <h2>You have <%= @user.active.length %> active loans:</h2>

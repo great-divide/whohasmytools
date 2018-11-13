@@ -28,6 +28,7 @@ class ToolsController < ApplicationController
 
       redirect "users/#{@user.id}"
     else
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect "/users/login"
     end
   end
@@ -38,6 +39,7 @@ class ToolsController < ApplicationController
 
       erb :"/tools/user_tools"
     else 
+      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect '/'
     end
   end

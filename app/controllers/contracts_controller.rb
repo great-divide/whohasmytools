@@ -12,16 +12,17 @@ class ContractsController < ApplicationController
 				@contract.borrower = User.find_by(username: params["loan"]["borrower"])
 				@contract.tool = @tool
 				@tool.contracts << @contract
+
 				@contract.save
 
 				redirect "/users/contracts"
 			else
-				# flash message "That tool is already loaned out!"
+				flash[:tool_not_available] = "That tool is already loaned out!"
 
 				redirect "/users/contracts"
 			end
 		else
-			# clearer to either use flash message or go to dedicated login page 'sorry you must log in'... flash sounds snazzier
+			flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
 			redirect '/'
 		end
 	end
@@ -30,7 +31,7 @@ class ContractsController < ApplicationController
 		
 		if logged_in?
 			@user = current_user
-		
+			binding.pry
 			erb :"/contracts/user_contracts"
 		else 
 			flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
