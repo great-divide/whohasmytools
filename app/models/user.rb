@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 	has_secure_password
 	has_many :tools
-	# has_many :borrows
 	
 	# "loaner_contract == in the role of loaner
 	has_many :loaner_contracts, foreign_key: :loaner_id, class_name: "Contract"
