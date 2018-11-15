@@ -2,11 +2,11 @@ class ToolsController < ApplicationController
 
 
   post "/tools/new" do
-    binding.pry
+  
     if logged_in?
       if params["tool"]["name"] == ""
         flash[:tool_error] = "You forgot to name that tool!"
-        
+
         redirect "/users/#{current_user.id}"
       else
         @user = current_user
