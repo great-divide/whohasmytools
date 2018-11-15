@@ -2,14 +2,21 @@ class ToolsController < ApplicationController
 
 
   post "/tools/new" do
+    binding.pry
     if logged_in?
-      @user = current_user
-      @tool = Tool.create(params["tool"])
-      @user.tools << @tool
-      # do i have to run 'save' here?
-      @user.save
+      if params["tool"]["name"] == ""
+        flash[:tool_error] = "You forgot to name that tool!"
+        
+        redirect "/users/#{current_user.id}"
+      else
+        @user = current_user
+        @tool = Tool.create(params["tool"])
+        @user.tools << @tool
+        # do i have to run 'save' here?
+        @user.save
 
-      redirect "users/#{@user.id}"
+        redirect "users/#{@user.id}"
+      end
     else
       flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect "/users/login"
