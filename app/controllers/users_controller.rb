@@ -24,11 +24,6 @@ class UsersController < ApplicationController
     end
   end
 
-
-  # get "/users" do
-  #   erb :"/users/index"
-  # end
-
   
   post "/signup" do
     if !logged_in?
@@ -69,15 +64,5 @@ class UsersController < ApplicationController
       flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
       redirect '/'
     end
-  end
-
-  
-  patch "/users/:id" do
-    redirect "/users/:id"
-  end
-
-  
-  delete "/users/:id/delete" do
-    redirect "/users"
   end
 end

@@ -1,22 +1,5 @@
 class ToolsController < ApplicationController
 
- 
-  # if User as more than, say 10 tools... show 10 on user/show, add link for this to list them all
-  # get "/tools" do
-
-  # end
-
-  
-  # get "/tools/new" do
-    # if logged_in?
-      
-    # else
-    #   redirect "/users/login"
-    # end
-
-  #   erb :"/tools/new"
-  # end
-
 
   post "/tools/new" do
     if logged_in?
@@ -47,7 +30,6 @@ class ToolsController < ApplicationController
   get "/tools/:id" do
     if logged_in?
       @tool = Tool.find_by(id: params["id"])
-      # binding.pry
 
       erb :"/tools/show"
     else 

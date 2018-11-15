@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
 	has_many :borrower_contracts, foreign_key: :borrower_id, class_name: "Contract"
 	has_many :loaners, through: :borrower_contracts, source: :loaner
 	
-	# def contracts
-	# end
+
 
 	def active
 		array = []
