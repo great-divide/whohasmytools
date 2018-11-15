@@ -1,5 +1,7 @@
 <% if flash[:tool_error] %>
     <%= flash[:tool_error] %>
+<% elsif flash[:loan_error] %>
+    <%= flash[:loan_error] %>
 <% end %>
 
 <h1>Welcome, <%= @user.username%>!</h1>

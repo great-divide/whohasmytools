@@ -1,29 +1,35 @@
 class ContractsController < ApplicationController
 
 	post "/contracts/new" do
-		
+	
 		if logged_in? && User.find_by(username: params["loan"]["borrower"])
-			@tool = Tool.find_by(name: params["loan"]["tool"])
-
-			if @tool.contracts.select { |c| c.active == true }.empty?
-
-				@contract = Contract.create
-				@contract.loaner = current_user
-				@contract.borrower = User.find_by(username: params["loan"]["borrower"])
-				@contract.tool = @tool
-				@tool.contracts << @contract
-
-				@contract.save
-
-				redirect "/users/contracts"
+		
+			if params["loan"]["tool"] == ""
+				flash[:tool_error] = "You forgot to select a tool."
+				redirect "/users/#{current_user.id}"
 			else
-				flash[:tool_not_available] = "That tool is already loaned out!"
+				@tool = Tool.find_by(name: params["loan"]["tool"])
 
-				redirect "/users/contracts"
+				if @tool.contracts.select { |c| c.active == true }.empty?
+					@contract = Contract.create
+					@contract.loaner = current_user
+					@contract.borrower = User.find_by(username: params["loan"]["borrower"])
+					@contract.tool = @tool
+					@tool.contracts << @contract
+					@contract.save
+					redirect "/users/contracts"
+				else
+					flash[:tool_not_available] = "That tool is already loaned out!"
+					redirect "/users/contracts"
+				end
 			end
-		else
+		elsif !logged_in?
 			flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
 			redirect '/'
+		else 
+			
+			flash[:loan_error] = "You forgot to select a User."
+			redirect "/users/#{current_user.id}"
 		end
 	end
 
