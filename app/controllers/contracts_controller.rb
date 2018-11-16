@@ -28,7 +28,7 @@ class ContractsController < ApplicationController
 			redirect '/'
 		else 
 			
-			flash[:loan_error] = "You forgot to select a User."
+			flash[:loan_error] = "Either you forgot to select a User or that User does not exist. Maybe you misspelled it?"
 			redirect "/users/#{current_user.id}"
 		end
 	end

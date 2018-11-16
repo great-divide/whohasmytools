@@ -24,27 +24,17 @@ class ToolsController < ApplicationController
   end
 
   get '/users/tools' do
-    if logged_in?
-      @user = current_user
+    redirect_if_not_logged_in
+    @user = current_user
 
-      erb :"/tools/user_tools"
-    else 
-      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
-      redirect '/'
-    end
+    erb :"/tools/user_tools"
   end
 
   get "/tools/:id" do
-    if logged_in?
-      @tool = Tool.find_by(id: params["id"])
+    redirect_if_not_logged_in
+    @tool = Tool.find_by(id: params["id"])
 
-      erb :"/tools/show"
-    else 
-      flash[:login_error] = "Oops, you're not logged in! Please log in to continue."
-      redirect "/"
-    end
-
-    
+    erb :"/tools/show"
   end
 
  
@@ -84,8 +74,9 @@ class ToolsController < ApplicationController
 
  
   delete "/tools/:id/delete" do
-    if logged_in? && current_user.tools.include?(Tool.find_by(params["id"]))
-        @tool = Tool.find_by(params["id"])
+    if logged_in? && current_user.tools.include?(Tool.find_by(id: params["id"]))
+        # binding.pry
+        @tool = Tool.find_by(id: params["id"])
         @tool.delete
         
         redirect "/users/tools"
