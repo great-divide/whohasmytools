@@ -5,13 +5,18 @@ gem 'activerecord', '>= 5.0', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
-gem 'sqlite3'
+# gem 'sqlite3'
 gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem 'sinatra-flash'
+gem 'pg'
+
+group :development do
+  gem 'sqlite3'  
+end
 
 group :test do
   gem 'rspec'
