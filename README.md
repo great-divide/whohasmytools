@@ -1,5 +1,5 @@
 ## WhoHasMyTools
-Allows Users to sign up, add Tools, and loan those tools to other Users.
+A Sinatra-based app that allows Users to sign up, add Tools, and loan those tools to other Users.
 
 ### What you should know
 The User to User relationship is defined as loaner to borrower, and created with a 
